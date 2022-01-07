@@ -4,6 +4,7 @@
     <h1>My Cart</h1>
   </header>
 
+  <% if enhanced_cart.length >= 1 %>
   <div class="panel panel-default items">
     <table class="table table-bordered">
       <thead>
@@ -14,6 +15,7 @@
           <th>Price</th>
         </tr>
       </thead>
+      <% puts "=======>, #{enhanced_cart}" %>
       <tbody>
         <% enhanced_cart.each do |item| %>
           <%= render 'item', product: item[:product], quantity: item[:quantity].to_i %>
@@ -45,6 +47,10 @@
           data-email="kvirani@gmail.com"
           data-currency="cad">
         </script>
+      <% end %>
+      <% elsif %>
+      <div> Your cart is empty </div>
+      <%= link_to 'here', root_path%>
       <% end %>
     </div>
   </div>
