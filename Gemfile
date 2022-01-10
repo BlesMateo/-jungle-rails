@@ -24,7 +24,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Use ActiveModel has_secure_password
-gem 'bcrypt', '~> 3.1.7'
+#gem 'bcrypt', '~> 3.1.7'
 
 gem 'puma'
 
@@ -44,6 +44,8 @@ group :development, :test do
   gem 'byebug'
   gem 'quiet_assets'
   gem 'dotenv-rails'
+  gem 'rspec-rails', '~> 3.5'
+
 end
 
 group :development do
