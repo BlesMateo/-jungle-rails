@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   describe "Validations" do
     before do
-      @user = User.create(first_name: "Whoopi", last_name: "Goldberg", email: "odamaebrown@ghost.com", password: "tensandtwenties", password_confirmation: "tensandtwenties")
+      @user = User.create(name: "Whoopi Goldberg", email: "odamaebrown@ghost.com", password: "tensandtwenties", password_confirmation: "tensandtwenties")
     end
 
     it "is valid with valid attributes" do
@@ -11,16 +11,11 @@ RSpec.describe User, type: :model do
     end
 
     it "should have a valid first name" do
-      @user.first_name = nil
+      @user.name = nil
       @user.valid?
       expect(@user.errors.full_messages).to_not be_empty
     end
 
-    it "should have a valid last name" do
-      @user.last_name = nil
-      @user.valid?
-      expect(@user.errors.full_messages).to_not be_empty
-    end
 
     it "should have a valid email" do
       @user.email = nil
@@ -29,7 +24,7 @@ RSpec.describe User, type: :model do
     end
 
     it "should have a unique email" do
-      @user2 = User.create(first_name: "Whoopi", last_name: "Goldberg", email: "ODAMAEBROWN@ghost.com", password: "tensandtwenties", password_confirmation: "tensandtwenties")
+      @user2 = User.create(name: "Whoopi Goldberg", email: "ODAMAEBROWN@ghost.com", password: "tensandtwenties", password_confirmation: "tensandtwenties")
       @user2.valid?
       expect(@user2.errors.full_messages).to_not be_empty
     end
@@ -58,7 +53,7 @@ RSpec.describe User, type: :model do
 
   describe '.authenticate_with_credentials' do
     before do
-      @user = User.create(first_name: "Whoopi", last_name: "Goldberg", email: "odamaebrown@ghost.com", password: "tensandtwenties", password_confirmation: "tensandtwenties")
+      @user = User.create(name: "Whoopi Goldberg", email: "odamaebrown@ghost.com", password: "tensandtwenties", password_confirmation: "tensandtwenties")
     end
 
 
