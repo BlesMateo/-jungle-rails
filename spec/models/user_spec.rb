@@ -56,5 +56,57 @@ RSpec.describe User, type: :model do
 
   end
 
+  describe '.authenticate_with_credentials' do
+    before do
+      @user = User.create(first_name: "Whoopi", last_name: "Goldberg", email: "odamaebrown@ghost.com", password: "tensandtwenties", password_confirmation: "tensandtwenties")
+    end
+
+
+    it "should login if valid email and valid password is correct" do
+      email = 'odamaebrown@ghost.com'
+      password = 'tensandtwenties'
+
+      @user2 = User.authenticate_with_credentials(email, password)
+
+      expect(@user2).to eq(@user)
+    end
+
+    it "should not logging if email is incorrect" do
+      email = 'maebrown@ghost.com'
+      password = 'tensandtwenties'
+
+      @user2 = User.authenticate_with_credentials(email, password)
+
+      expect(@user2).to_not eq(@user)
+    end
+
+    it "should not logging if password is incorrect" do
+      email = 'odamaebrown@ghost.com'
+      password = 'onesandtwos'
+
+      @user2 = User.authenticate_with_credentials(email, password)
+
+      expect(@user2).to_not eq(@user)
+    end
+
+    it "should login if there email has spaces" do
+      email = ' odamaebrown@ghost.com  '
+      password = 'tensandtwenties'
+
+      @user2 = User.authenticate_with_credentials(email, password)
+
+      expect(@user2).to eq(@user)
+    end
+
+    it "should login if email is typed in different cases" do
+      email = 'oDaMaEbRoWN@GhOsT.cOm'
+      password = 'tensandtwenties'
+
+      @user2 = User.authenticate_with_credentials(email, password)
+
+      expect(@user2).to eq(@user)
+    end
+
+  end
 
 end
